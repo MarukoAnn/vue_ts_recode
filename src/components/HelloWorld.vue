@@ -20,7 +20,7 @@ const count = ref(0)
 
   <p>
     <a href="https://vitejs.dev/guide/features.html" target="_blank">
-      Vite Docs
+      Vite Docs1
     </a>
     |
     <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Docs</a>
@@ -43,7 +43,7 @@ label {
   font-weight: bold;
 }
 
-code {
+  code {
   background-color: #eee;
   padding: 2px 4px;
   border-radius: 4px;
