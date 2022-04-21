@@ -8,6 +8,13 @@
     "preview": "vite preview",
     "prepare": "husky install"
   },
+  "lint-staged": {
+    "src/*.{vue,js,ts}": [
+      "prettier -config prettier.config.js --write",
+      "eslint --fix",
+      "git add"
+    ]
+  },
   "dependencies": {
     "axios": "^0.26.1",
     "pinia": "^2.0.13",
@@ -35,13 +42,6 @@
     "typescript": "^4.5.4",
     "vite": "^2.9.5",
     "vue-tsc": "^0.34.7"
-  },
-  "lint-staged": {
-    "src/*.{vue,js,ts}": [
-      "prettier -config .prettierrc --write",
-      "eslint --fix",
-      "git add"
-    ]
   },
   "config": {
     "commitizen": {
