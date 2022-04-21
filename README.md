@@ -7,3 +7,11 @@ This template should help get you started developing with Vue 3 and TypeScript i
 ```
 https://juejin.cn/post/7028021332713570318#heading-13
 ```
+
+### 1、代码提交规范
+![image](./src/assets/ic_commit_type.png)
+```
+// 列如：
+// 新增一个功能
+git commit -m "feat: xxx"
+```
