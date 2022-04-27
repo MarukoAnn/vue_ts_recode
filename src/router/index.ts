@@ -8,9 +8,16 @@ const routes: Array<RouteRecordRaw> = [
     redirect: '/login'
   },
   {
-    path: '/',
+    path: '/home',
     name: 'Home',
-    component: () => import('@/pages/home/home.vue')
+    component: () => import('@/pages/home/home.vue'),
+    children: [
+      {
+        path: 'main',
+        name: 'main',
+        component: () => import('@/pages/home/main/main.vue')
+      }
+    ]
   },
   {
     path: '/login',
