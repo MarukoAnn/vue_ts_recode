@@ -28,7 +28,7 @@ module.exports = {
     // 添加prettier 插件
   ],
   rules: {
-    'vue/script-setup-uses-vars': 'error',
+    // 'vue/script-setup-uses-vars': 'error',
     '@typescript-eslint/ban-ts-ignore': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
@@ -56,7 +56,6 @@ module.exports = {
       },
     ],
     'space-before-function-paren': 'off',
-
     'vue/attributes-order': 'off',
     'vue/one-component-per-file': 'off',
     'vue/html-closing-bracket-newline': 'off',

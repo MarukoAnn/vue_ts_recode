@@ -6,10 +6,9 @@ export default [
     method: 'POST',
     response: () => {
       return {
-        code: 401,
-        data: {
-          name: 'vben'
-        }
+        code: 200,
+        data: null,
+		msg: '登陆成功'
       }
     }
   }

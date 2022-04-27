@@ -17,8 +17,10 @@
   "dependencies": {
     "axios": "^0.26.1",
     "axios-retry": "^3.2.4",
+    "element-plus": "^2.1.11",
     "mockjs": "^1.1.0",
     "pinia": "^2.0.13",
+    "pinia-plugin-persist": "^1.0.0",
     "qs": "^6.10.3",
     "sass": "^1.50.1",
     "vue": "^3.2.25",

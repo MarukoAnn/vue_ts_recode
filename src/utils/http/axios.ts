@@ -61,7 +61,7 @@ class HttpService {
             // const instance = alert('用户信息过期, 请重新登陆')
             setTimeout(() => {
               //   instance.close()
-            	route.push('/login')
+              route.push('/login')
             }, 1000)
             break
           default:
@@ -114,7 +114,6 @@ class HttpService {
   }
 }
 
-// eslint-disable-next-line import/prefer-default-export
 const httpService = new HttpService()
 
 export default httpService
