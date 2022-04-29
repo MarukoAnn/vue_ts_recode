@@ -1,13 +1,12 @@
 <template>
-  <div class="w-full h-10 bg-green-500/50">
+  <div class="w-full h-8 bg-green-500/50">
 	<scrollPane>
-		<div class="h-10 flex items-center w-full">
+		<div class="h-8 flex items-center w-full">
 			  <el-tag
 				v-for="tag in dynamicTags"
 				:key="tag"
 				class="mx-1"
 				closable
-				size="large"
 				:disable-transitions="false"
 				@close="handleClose(tag)"
 			>

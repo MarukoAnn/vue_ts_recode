@@ -16,6 +16,21 @@ const routes: Array<RouteRecordRaw> = [
         path: 'main',
         name: 'main',
         component: () => import('@/pages/home/main/main.vue')
+      },
+	  {
+        path: 'table',
+        name: 'table',
+        component: () => import('@/pages/home/main/table.vue')
+      },
+	  {
+        path: 'tab',
+        name: 'tab',
+        component: () => import('@/pages/home/main/tab.vue')
+      },
+	  {
+        path: 'form',
+        name: 'form',
+        component: () => import('@/pages/home/main/form.vue')
       }
     ]
   },

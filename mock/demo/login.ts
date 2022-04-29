@@ -8,8 +8,8 @@ export default [
       return {
         code: 200,
         data: null,
-		msg: '登陆成功'
+        msg: '登陆成功'
       }
     }
   }
-] as MockMethod[]
+] as unknown as MockMethod[]
