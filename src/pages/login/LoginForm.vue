@@ -46,7 +46,7 @@
         if (res.code === 200) {
           app.$toast('success', '登陆成功')
           userStore.setUserInfo(ruleForm)
-          router.push({ path: '/home' })
+          router.push({ path: '/home/main' })
         }
       })
     } else {

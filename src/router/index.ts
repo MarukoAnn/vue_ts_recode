@@ -13,26 +13,56 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/pages/home/home.vue'),
     children: [
       {
-        path: 'main',
+        path: '/home/main',
         name: 'main',
-        component: () => import('@/pages/home/main/main.vue')
+        component: () => import('@/pages/home/main/main.vue'),
+        meta: {
+          label: '首页',
+          icon: 'home-filled'
+        }
       },
-	  {
-        path: 'table',
+      {
+        path: '/home/table',
         name: 'table',
-        component: () => import('@/pages/home/main/table.vue')
+        component: () => import('@/pages/home/table/index.vue'),
+        children: [
+          {
+            path: '/home/table/basic',
+            name: 'basic',
+            component: () => import('@/pages/home/table/basic/basic.vue'),
+            children: [],
+            meta: {
+              label: '基础表格'
+            }
+          }
+        ],
+        meta: {
+          label: '表格',
+          icon: 'Grid'
+        }
       },
-	  {
-        path: 'tab',
+      {
+        path: '/home/tab',
         name: 'tab',
-        component: () => import('@/pages/home/main/tab.vue')
+        component: () => import('@/pages/home/main/tab.vue'),
+        meta: {
+          label: 'tab选项卡',
+          icon: 'CreditCard'
+        }
       },
-	  {
-        path: 'form',
+      {
+        path: '/home/form',
         name: 'form',
-        component: () => import('@/pages/home/main/form.vue')
+        component: () => import('@/pages/home/main/form.vue'),
+        meta: {
+          label: '表单',
+          icon: 'Calendar'
+        }
       }
-    ]
+    ],
+    meta: {
+      label: '首页'
+    }
   },
   {
     path: '/login',
