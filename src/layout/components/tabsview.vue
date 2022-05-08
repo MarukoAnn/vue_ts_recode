@@ -3,24 +3,38 @@
 	<scrollPane>
 		<div class="h-8 flex items-center w-full">
 			  <el-tag
-				v-for="tag in dynamicTags"
+				v-for="tag in tabStore.tabMenu"
 				:key="tag"
 				class="mx-1"
 				closable
+				:type="tag.isActive? '': 'info'"
 				:disable-transitions="false"
+				@click="handleClick(tag)"
 				@close="handleClose(tag)"
 			>
-				{{ tag }}
+				{{ tag.name }}
   </el-tag>
 		</div>
 	</scrollPane>
   </div>
 </template>
 <script lang="ts" setup>
-import {ref} from "vue"
+import {ref, onMounted} from "vue"
+import { TabMenu } from '@/model/home/menu'
 import scrollPane from '@/components/ScrollPane.vue'
-const dynamicTags = ref(['Tag 1', 'Tag 2', 'Tag 3'])
-const handleClose = (tag: string) => {
-  dynamicTags.value.splice(dynamicTags.value.indexOf(tag), 1)
+import { menuStore } from '@/store/module/menu'
+import { useRouter} from 'vue-router'
+const router = useRouter();
+const tabStore = menuStore();
+const handleClose = (tag: TabMenu): void => {
+	tabStore.removeTabMenuData(tag)
+	console.log('tabStore.tabMenu', tabStore.tabMenu)
+	let routeObj = tabStore.tabMenu.find(val => val.isActive)
+	router.push(routeObj.path)
+}
+const handleClick = (tag: TabMenu): void => {
+	tabStore.resetTabMenuStatus();
+	tag.isActive = true;
+	router.push(tag.path)
 }
 </script>

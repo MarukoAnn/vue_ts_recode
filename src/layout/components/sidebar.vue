@@ -11,15 +11,14 @@
       class="el-menu-vertical-demo"
       :collapse="menuStores.isMenuClosed"
       @close="handleClose"
-	  @select="handleSelect"
       :router="true"
     >
-      <subMenuItem :menuData="MenuData" />
+      <subMenuItem :menuData="MenuData" @select="handleSelect"/>
     </el-menu>
   </div>
 </template>
 <script lang="ts" setup>
-  import { ref, onMounted } from 'vue'
+  import { ref, onMounted, onBeforeMount } from 'vue'
   import { menuStore } from '@/store/module/menu'
   import { useRouter, useRoute } from 'vue-router'
   import subMenuItem from './subMenuItem.vue'
@@ -27,26 +26,31 @@
   const route = useRoute()
   const MenuData = ref([])
   const menuStores = menuStore()
-  onMounted(() => {
+  onBeforeMount(() => {
     console.log(route.name)
     let routeList: any = router.getRoutes().find((val) => val.name == 'Home')
-    MenuData.value = routeList?.children
+    MenuData.value = routeList?.children;
+	let data = MenuData.value.find((val) => val.name == route.name)
+	 let obj = { name: data.meta.label, path: data.path, isActive: true }
+	menuStores.setTabMenuData(obj)
   })
 
-  const handleOpen = (key: string, keyPath: string[]) => {
-    console.log(key, keyPath)
-  }
+    // let obj = { name: item.meta.label, path: item.path, isActive: true }
+	// menuStores.setTabMenuData(obj)
   const handleClose = (key: string, keyPath: string[]) => {
     console.log(key, keyPath)
   }
-  const handleSelect = (key: string, keyPath: string[]) => {
-	  console.log(key, keyPath, 'select')
+  const handleSelect = (item: any) => {
+    console.log(item, 'select')
+    let obj = { name: item.meta.label, path: item.path, isActive: true }
+	menuStores.setTabMenuData(obj)
   }
 </script>
 <style lang="scss" scoped>
   .el-menu-vertical-demo {
     border-color: #324157;
   }
+
   :deep(.is-active) {
     // background: #fff
   }

@@ -7,17 +7,27 @@
         </el-icon>
         <span>{{ item?.meta?.label }}</span>
       </template>
-      <subMenuItem :menuData="item?.children" />
+      <subMenuItem :menuData="item?.children"  @select="selectItem"/>
     </el-sub-menu>
-    <el-menu-item v-else :index="item.path" :route="item.path">
+    <el-menu-item v-else :index="item.path" :route="item.path" @click="selectItem(item)">
       <el-icon>
         <component :is="item?.meta?.icon" />
       </el-icon>
-      <template #title>{{ item?.meta?.label }}</template>
+      <template #title>{{ item?.meta?.label}}</template>
     </el-menu-item>
   </template>
 </template>
 <script setup lang="ts">
-  import { onMounted, watch } from 'vue'
-  const { menuData } = defineProps(['menuData'])
+//   import console from 'console';
+  import { defineProps, defineEmits } from 'vue'
+  defineProps({
+	menuData: {
+		type: Array,
+		default: () => []
+	}
+  })
+  const emit = defineEmits(['select'])
+  const selectItem = (item: any): void => {
+	emit('select', item)
+  }
 </script>

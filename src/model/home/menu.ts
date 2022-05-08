@@ -16,3 +16,7 @@ export interface TabMenu {
 	isActive: boolean
 }
 
+// export interface TabViewData {
+// 	name: string,
+// 	path: s
+// }
