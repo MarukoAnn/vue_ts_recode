@@ -2,7 +2,7 @@
   <template v-for="item in menuData" :key="item.name">
     <el-sub-menu v-if="item?.children?.length > 0" :index="item.path">
       <template #title>
-        <el-icon>
+        <el-icon v-if="item?.meta?.icon">
          	<component is="font-awesome-icon" :icon="item?.meta?.icon" />
         </el-icon>
         <span>{{ item?.meta?.label }}</span>
@@ -10,7 +10,7 @@
       <subMenuItem :menuData="item?.children"  @select="selectItem"/>
     </el-sub-menu>
     <el-menu-item v-else :index="item.path" :route="item.path" @click="selectItem(item)">
-      <el-icon>
+      <el-icon v-if="item?.meta?.icon">
         <component is="font-awesome-icon" :icon="item?.meta?.icon" />
       </el-icon>
       <template #title>{{ item?.meta?.label}}</template>
