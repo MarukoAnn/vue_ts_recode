@@ -28,7 +28,7 @@
   })
   const app = getCurrentInstance()!.appContext.config.globalProperties
   const router = useRouter()
-  const userStore = useStore()
+  const { userStore } = useStore()
   onMounted(() => {
     console.log('userStore.info', userStore.info)
     if (userStore.info?.rememberPsw) {
