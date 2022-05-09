@@ -14,7 +14,7 @@
     </div>
     <div class="mr-4 flex items-center">
       <el-icon class="mr-4" @click="ampClick">
-        <component is="font-awesome-icon" :icon="fullscreen? 'compress-alt': 'expand-alt'" />
+        <component is="font-awesome-icon" :icon="fullScreen ? 'compress-alt' : 'expand-alt'" />
       </el-icon>
       <el-popover trigger="click" title="" persistent>
         <template #reference>
@@ -29,14 +29,14 @@
 </template>
 <script lang="ts" setup>
   import { onMounted, ref } from 'vue'
-  import { menuStore } from '@/store/module/menu'
+  import useStore from '@/hooks/useStoreHook'
   import { useRouter } from 'vue-router'
   import { tabMenu } from '@/model/home/menu'
-  const menuStores = menuStore()
+  const { menuStores } = useStore()
   const router = useRouter()
   const routerList = ref<any>([])
   const breadData = ref<string[]>([])
-  const fullscreen = ref<boolean>(false)
+  const fullScreen = ref<boolean>(false)
   onMounted(() => {
     routerList.value = router.getRoutes().find((val) => val.name == 'Home')
     setBreadData(menuStores.tabMenu)
@@ -70,12 +70,12 @@
     menuStores.setMenuClosed(!menuStores.isMenuClosed)
   }
   const logoutClick = (): void => {
-	//   menuStore.resetTabMenuStatus
-	  router.push('/login');
+    //   menuStore.resetTabMenuStatus
+    router.push('/login')
   }
   const ampClick = (): void => {
     let element = document.documentElement
-    if (fullscreen.value) {
+    if (fullScreen.value) {
       if (document.exitFullscreen) {
         document.exitFullscreen()
       } else if (document?.webkitCancelFullScreen) {
@@ -96,14 +96,14 @@
         element.msRequestFullscreen()
       }
     }
-    fullscreen.value = !fullscreen.value
+    fullScreen.value = !fullScreen.value
   }
 </script>
 <style lang="scss" scoped>
   .header {
     box-shadow: 0px 0px 4px #ccc;
     .login-out:hover {
-    	background-color: skyblue;
+      background-color: skyblue;
     }
   }
 </style>

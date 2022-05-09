@@ -3,7 +3,7 @@
     <scrollPane>
       <div class="h-8 flex items-center w-full">
         <el-tag
-          v-for="tag in tabStore.tabMenu"
+          v-for="tag in menuStores.tabMenu"
           :key="tag"
           class="mx-1"
           closable
@@ -19,27 +19,27 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref, onBeforeMount } from 'vue'
-import { TabMenu } from '@/model/home/menu'
-import scrollPane from '@/components/ScrollPane.vue'
-import { menuStore } from '@/store/module/menu'
-import { useRouter } from 'vue-router'
-const router = useRouter()
-const tabStore = menuStore()
-onBeforeMount(() => {
-	if(tabStore.tabMenu.length === 0) {
-		tabStore.setTabMenuData({name: '首页', path: '/home/main', isActive: true})
-	}
-})
-const handleClose = (tag: TabMenu): void => {
-  tabStore.removeTabMenuData(tag)
-  console.log('tabStore.tabMenu', tabStore.tabMenu)
-  let routeObj = tabStore.tabMenu.find((val) => val.isActive)
-  router.push(routeObj.path)
-}
-const handleClick = (tag: TabMenu): void => {
-  tabStore.resetTabMenuStatus()
-  tag.isActive = true
-  router.push(tag.path)
-}
+  import { onBeforeMount } from 'vue'
+  import { TabMenu } from '@/model/home/menu'
+  import scrollPane from '@/components/ScrollPane.vue'
+  import useStore from '@/hooks/useStoreHook'
+  import { useRouter } from 'vue-router'
+  const router = useRouter()
+  const { menuStores } = useStore()
+  onBeforeMount(() => {
+    if (menuStores.tabMenu.length === 0) {
+      menuStores.setTabMenuData({ name: '首页', path: '/home/main', isActive: true })
+    }
+  })
+  const handleClose = (tag: TabMenu): void => {
+    menuStores.removeTabMenuData(tag)
+    console.log('menuStores.tabMenu', menuStores.tabMenu)
+    let routeObj = menuStores.tabMenu.find((val) => val.isActive)
+    router.push(routeObj.path)
+  }
+  const handleClick = (tag: TabMenu): void => {
+    menuStores.resetTabMenuStatus()
+    tag.isActive = true
+    router.push(tag.path)
+  }
 </script>
