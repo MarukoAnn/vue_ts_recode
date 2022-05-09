@@ -18,7 +18,5 @@
   .login-content {
     background: linear-gradient(850deg, salmon, #74e5fa);
     height: 100vh;
-    .login {
-    }
   }
 </style>

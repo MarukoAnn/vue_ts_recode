@@ -30,9 +30,9 @@
     console.log(route.name)
     let routeList: any = router.getRoutes().find((val) => val.name == 'Home')
     MenuData.value = routeList?.children;
-	let data = MenuData.value.find((val) => val.name == route.name)
-	 let obj = { name: data.meta.label, path: data.path, isActive: true }
-	menuStores.setTabMenuData(obj)
+	// let data = MenuData.value.find((val) => val.name == route.name)
+	//  let obj = { name: data.meta.label, path: data.path, isActive: true }
+	// menuStores.setTabMenuData(obj)
   })
 
     // let obj = { name: item.meta.label, path: item.path, isActive: true }

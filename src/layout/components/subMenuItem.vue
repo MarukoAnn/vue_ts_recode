@@ -3,7 +3,7 @@
     <el-sub-menu v-if="item?.children?.length > 0" :index="item.path">
       <template #title>
         <el-icon>
-          <component :is="item?.meta?.icon" />
+         	<component is="font-awesome-icon" :icon="item?.meta?.icon" />
         </el-icon>
         <span>{{ item?.meta?.label }}</span>
       </template>
@@ -11,7 +11,7 @@
     </el-sub-menu>
     <el-menu-item v-else :index="item.path" :route="item.path" @click="selectItem(item)">
       <el-icon>
-        <component :is="item?.meta?.icon" />
+        <component is="font-awesome-icon" :icon="item?.meta?.icon" />
       </el-icon>
       <template #title>{{ item?.meta?.label}}</template>
     </el-menu-item>

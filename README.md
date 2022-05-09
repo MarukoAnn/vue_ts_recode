@@ -32,3 +32,12 @@ git commit -m "feat: xxx"
 import authUtils from '@utils/auth'
 import router from '@router/index'
 ```
+
+### 3、icon的切换问题
+可以通过component标签来实现动态改变标签问题
+```
+<!-- 列如element-plus的标签切换 -->
+<el-icon>
+	<component :is="menuStores.isMenuClosed ? 'fold' : 'expand'"/>
+</el-icon>
+```

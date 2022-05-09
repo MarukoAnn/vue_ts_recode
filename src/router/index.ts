@@ -18,7 +18,7 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/pages/home/main/main.vue'),
         meta: {
           label: '首页',
-          icon: 'home-filled'
+          icon: 'home'
         }
       },
       {
@@ -38,7 +38,7 @@ const routes: Array<RouteRecordRaw> = [
         ],
         meta: {
           label: '表格',
-          icon: 'Grid'
+          icon: 'table'
         }
       },
       {
@@ -47,7 +47,7 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/pages/home/main/tab.vue'),
         meta: {
           label: 'tab选项卡',
-          icon: 'CreditCard'
+          icon: 'bookmark'
         }
       },
       {
@@ -56,7 +56,7 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/pages/home/main/form.vue'),
         meta: {
           label: '表单',
-          icon: 'Calendar'
+          icon: 'list-alt'
         }
       }
     ],

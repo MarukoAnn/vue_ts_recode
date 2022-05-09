@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-8 bg-green-500/50">
+  <div class="w-full h-8 shadow-md">
 	<scrollPane>
 		<div class="h-8 flex items-center w-full">
 			  <el-tag
