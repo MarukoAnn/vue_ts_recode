@@ -13,37 +13,32 @@
       @close="handleClose"
       :router="true"
     >
-      <subMenuItem :menuData="MenuData" @select="handleSelect"/>
+      <subMenuItem :menuData="MenuData" @select="handleSelect" />
     </el-menu>
   </div>
 </template>
 <script lang="ts" setup>
   import { ref, onMounted, onBeforeMount } from 'vue'
-  import { menuStore } from '@/store/module/menu'
+  //   import { menuStore } from '@/store/module/menu'
+  import useStore from '@/hooks/useStoreHook'
   import { useRouter, useRoute } from 'vue-router'
   import subMenuItem from './subMenuItem.vue'
   const router = useRouter()
   const route = useRoute()
   const MenuData = ref([])
-  const menuStores = menuStore()
+  const { menuStores } = useStore()
   onBeforeMount(() => {
     console.log(route.name)
     let routeList: any = router.getRoutes().find((val) => val.name == 'Home')
-    MenuData.value = routeList?.children;
-	// let data = MenuData.value.find((val) => val.name == route.name)
-	//  let obj = { name: data.meta.label, path: data.path, isActive: true }
-	// menuStores.setTabMenuData(obj)
+    MenuData.value = routeList?.children
   })
-
-    // let obj = { name: item.meta.label, path: item.path, isActive: true }
-	// menuStores.setTabMenuData(obj)
   const handleClose = (key: string, keyPath: string[]) => {
     console.log(key, keyPath)
   }
   const handleSelect = (item: any) => {
     console.log(item, 'select')
     let obj = { name: item.meta.label, path: item.path, isActive: true }
-	menuStores.setTabMenuData(obj)
+    menuStores.setTabMenuData(obj)
   }
 </script>
 <style lang="scss" scoped>

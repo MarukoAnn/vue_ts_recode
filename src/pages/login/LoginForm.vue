@@ -20,7 +20,7 @@
   import { login } from '@/apis/login'
   import { IDataWithError } from '@/utils/http/axios'
   import { useRouter } from 'vue-router'
-  import { useUserStore } from '@/store/module/user'
+  import useStore from '@/hooks/useStoreHook'
   const ruleForm = reactive<LoginFromData>({
     password: '',
     username: '',
@@ -28,7 +28,7 @@
   })
   const app = getCurrentInstance()!.appContext.config.globalProperties
   const router = useRouter()
-  const userStore = useUserStore()
+  const { userStore } = useStore()
   onMounted(() => {
     console.log('userStore.info', userStore.info)
     if (userStore.info?.rememberPsw) {
