@@ -8,17 +8,15 @@ import axios, {
 import axiosRetry from 'axios-retry'
 import authUtils from '@/utils/auth'
 import route from '@/router/index'
+import { useUserStore } from '@/store/module/user'
+const userStore = useUserStore()
 // // 环境的切换
-// axios.defaults.baseURL = import.meta.env.API_BASE_URL
-
+// axios.defaults.baseURL = import.meta.env.VITE_BASE_API
 export interface IDataWithError<T> {
   data: T
   code: number
   msg: string
 }
-
-// axios.defaults.timeout = 3000
-
 class HttpService {
   private http!: AxiosInstance
 
@@ -48,10 +46,11 @@ class HttpService {
     //  1、拦截请求
     http.interceptors.request.use((config) => {
       // 1、添加token
-      const token = authUtils.getToken()
+	  console.log(userStore.token)
+      const token = userStore.token
       //  获取token后做啥
       if (token) {
-        // config!.headers['test'] = 'xxx'
+		config!.headers['Authorization'] = `Bearer ${token}`
       }
       // 2、验证请求状态码
       // eslint-disable-next-line no-param-reassign

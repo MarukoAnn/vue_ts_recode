@@ -1,4 +1,4 @@
-import { UserConfig, ConfigEnv } from 'vite'
+import { UserConfig, ConfigEnv, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
 import { viteMockServe } from 'vite-plugin-mock'
@@ -13,16 +13,23 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     },
     plugins: [
       vue(),
-      viteMockServe({
-        mockPath: 'mock',
-		ignore: /^\_/,
-        localEnabled: command === 'serve',
-		injectCode: `
-		import { setupProdMockServer } from './mockProdServer';
-		setupProdMockServer();
-	  `
-      }),
-	  WindiCSS()
+      //   viteMockServe({
+      //     mockPath: 'mock',
+      // 	ignore: /^\_/,
+      //     localEnabled: command === 'serve',
+      // 	injectCode: `
+      // 	import { setupProdMockServer } from './mockProdServer';
+      // 	setupProdMockServer();
+      //   `
+      //   }),
+      WindiCSS()
     ]
+    // server: {
+    //   proxy: {
+    //     // 选项写法
+    //     '/api': loadEnv(mode, process.cwd()).API_BASE_URL //代理网址
+    //   },
+    //   cors: true
+    // }
   }
 }

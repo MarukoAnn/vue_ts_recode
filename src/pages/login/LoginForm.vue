@@ -44,6 +44,9 @@
       login(ruleForm).then((res: IDataWithError<null>) => {
         console.log(res)
         if (res.code === 200) {
+		 if (res.data.token) {
+			userStore.setToken(res.data.token)
+		 }
           app.$toast('success', '登陆成功')
           userStore.setUserInfo(ruleForm)
           router.push({ path: '/home/main' })

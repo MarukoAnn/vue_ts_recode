@@ -1,5 +1,5 @@
 const getBaseUrl = (): string => {
-  return import.meta.env.API_BASE_URL
+  return import.meta.env.VITE_BASE_API
 }
 
 const getToken = (): string => {
