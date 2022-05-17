@@ -58,6 +58,15 @@ const routes: Array<RouteRecordRaw> = [
           label: '表单',
           icon: 'list-alt'
         }
+      },
+      {
+        path: '/user/userList',
+        name: 'user',
+        component: () => import('@/pages/user/userList.vue'),
+        meta: {
+          label: '用户信息',
+          icon: 'list-alt'
+        }
       }
     ],
     meta: {
