@@ -98,11 +98,11 @@
 </template>
 
 <script setup lang="ts">
-  import { reactive, ref, computed, onMounted, h } from 'vue'
-  import { userInfoData } from '@/model/user/userInfo'
-  import { Delete, Download, Plus, ZoomIn, Edit } from '@element-plus/icons-vue'
-  import type { UploadFile } from 'element-plus'
-  import { ElMessage } from 'element-plus'
+  import { reactive, ref, computed, onMounted } from 'vue';
+  import { userInfoData } from '@/model/user/userInfo';
+  import { Delete, Download, Plus, ZoomIn, Edit } from '@element-plus/icons-vue';
+  import type { UploadFile } from 'element-plus';
+  import { ElMessage } from 'element-plus';
 
   const search = ref('')
   const tableData = reactive<userInfoData[]>([

@@ -19,11 +19,11 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { onBeforeMount } from 'vue'
-  import { TabMenu } from '@/model/home/menu'
-  import scrollPane from '@/components/ScrollPane.vue'
-  import useStore from '@/hooks/useStoreHook'
-  import { useRouter } from 'vue-router'
+  import { onBeforeMount } from 'vue';
+  import { TabMenu } from '@/model/home/menu';
+  import scrollPane from '@/components/ScrollPane.vue';
+  import useStore from '@/hooks/useStoreHook';
+  import { useRouter } from 'vue-router';
   const router = useRouter()
   const { menuStores } = useStore()
   onBeforeMount(() => {

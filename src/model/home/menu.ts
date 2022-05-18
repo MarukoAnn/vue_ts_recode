@@ -5,7 +5,7 @@ export interface MenuItem {
   meta: MetaData
 }
 
-interface MetaData {
+export interface MetaData {
   label: string
   icon: string
 }
