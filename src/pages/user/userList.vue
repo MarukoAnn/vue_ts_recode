@@ -40,12 +40,7 @@
         <el-form-item label="date" :label-width="formLabelWidth">
           <div class="block">
             <!-- 时间选择器 -->
-            <el-date-picker
-              v-model="value1"
-              @change="selectDate"
-              type="datetime"
-              placeholder="Select date and time"
-            />
+            <el-date-picker v-model="value1" type="datetime" placeholder="Select date and time" />
           </div>
         </el-form-item>
         <el-form-item label="name" :label-width="formLabelWidth">
@@ -70,6 +65,7 @@
             :on-preview="handlePictureCardPreview"
             :on-remove="handleRemove"
             :limit="1"
+			:file-list="fileList"
           >
             <el-icon><Plus /></el-icon>
           </el-upload>
@@ -152,7 +148,7 @@
     }
   ])
   let dialogFormVisible = ref(false)
-  let form = reactive<userInfoData[]>({
+  let form = ref<userInfoData[]>({
     date: 0,
     name: '',
     address: '',
@@ -167,6 +163,7 @@
   const small = ref(false)
   const background = ref(true)
   const disabled1 = ref(false)
+  const fileList = ref([])
 
   onMounted(() => {
     tableData.forEach((ele, index) => {
@@ -174,8 +171,7 @@
       ele.date = conversionTime(ele.date)
     })
   })
-  const defaultTime = new Date(2000, 1, 1, 12, 0, 0)
-
+	// 监听列表的变化
   const filterTableData = computed(() =>
     tableData.filter(
       (data: any) => !search.value || data.name.toLowerCase().includes(search.value.toLowerCase())
@@ -188,7 +184,6 @@
     tableData[index].isEdit = false
   }
   const handleDelete = (index: number, row: userInfoData) => {
-    console.log(index, row)
     tableData.splice(index, 1)
   }
 
@@ -199,7 +194,6 @@
   const dialogImageUrl = ref('')
   const dialogVisible = ref(false)
   const disabled = ref(false)
-  const file = ref('')
   // 删除图片
   const handleRemove: UploadProps['onRemove'] = (uploadFile, uploadFiles) => {
     console.log(uploadFile, uploadFiles)
@@ -209,28 +203,23 @@
     dialogImageUrl.value = file.url!
     dialogVisible.value = true
   }
-  // 改变图片
-  const changeImg = (uploadFile: UploadFile) => {
-    file.value = uploadFile.url
-  }
-
   // 添加按钮，提交信息
   const confirmInfo = () => {
-    if (!form.name) {
+    if (!form.value.name) {
       ElMessage({
         message: '姓名不能为空！',
         type: 'warning'
       })
       return
     }
-    if (!form.account) {
+    if (!form.value.account) {
       ElMessage({
         message: '账号不能为空！',
         type: 'warning'
       })
       return
     }
-    if (!form.password) {
+    if (!form.value.password) {
       ElMessage({
         message: '密码不能为空！',
         type: 'warning'
@@ -238,9 +227,9 @@
       return
     }
     dialogFormVisible.value = false
-    form.date = conversionTime(dataTime.value)
-    form.headImg = file.value
-    tableData.unshift(form)
+    form.value.date = value1.value ? conversionTime(value1.value) : 0
+    form.value.headImg = fileList.value[0].url
+    tableData.unshift(form.value)
     let obj = {
       date: 0,
       name: '',
@@ -249,8 +238,9 @@
       password: 0,
       headImg: ''
     }
-    form = obj
-    console.log('form:', form)
+    value1.value = ''
+	fileList.value = []
+    form.value = obj
   }
   const handleSizeChange = (val: number) => {
     console.log(`${val} items per page`)
@@ -258,19 +248,13 @@
   const handleCurrentChange = (val: number) => {
     console.log(`current page: ${val}`)
   }
-  const dataTime = ref(0)
-  const selectDate = (value: number) => {
-    console.log()
-    dataTime.value = Date.parse(value)
-  }
   const conversionTime = (val: number) => {
-    let timdedetail = val
-    let year = new Date(timdedetail).getFullYear()
-    let month = new Date(timdedetail).getMonth() + 1
-    let date = new Date(timdedetail).getDate()
-    let hours = new Date(timdedetail).getHours()
-    let minutes = new Date(timdedetail).getMinutes()
-    let seconds = new Date(timdedetail).getSeconds()
+    let year = new Date(val).getFullYear()
+    let month = new Date(val).getMonth() + 1
+    let date = new Date(val).getDate()
+    let hours = new Date(val).getHours()
+    let minutes = new Date(val).getMinutes()
+    let seconds = new Date(val).getSeconds()
     hours = hours >= 9 ? hours : '0' + hours
     minutes = minutes >= 9 ? minutes : '0' + minutes
     seconds = seconds >= 9 ? seconds : '0' + seconds
