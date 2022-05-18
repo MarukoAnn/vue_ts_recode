@@ -8,7 +8,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
   return {
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, 'src')
+        "@": path.resolve(__dirname, "src")
       }
     },
     plugins: [

@@ -1,4 +1,4 @@
-export interface LoginFromData {
+export interface userInfoData {
   date: number,
   username: string
   rememberPsw: boolean
@@ -7,6 +7,3 @@ export interface LoginFromData {
   headImg: string
 }
 
-export interface LoginState {
-  ruleForm: LoginFromData
-}

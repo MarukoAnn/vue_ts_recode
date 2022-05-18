@@ -1,10 +1,9 @@
 {
   "compilerOptions": {
-	"baseUrl": ".",
-	"paths": {
-		"@/utils/*": ["src/utils/*"], // 根据ts配置项设置path属性可以自定义引入的路径
-		"@/router/*": ["src/router/*"]
-	},
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
     "target": "esnext",
     "useDefineForClassFields": true,
     "module": "esnext",
