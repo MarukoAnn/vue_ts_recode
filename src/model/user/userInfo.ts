@@ -1,9 +1,10 @@
 export interface userInfoData {
   date: number,
-  username: string
-  rememberPsw: boolean
+  name: string,
+  address: string,
   account: number,
-  password: number,
-  headImg: string
+  password: any,
+  headImg: string,
+  isEdit?: boolean,
 }
 
