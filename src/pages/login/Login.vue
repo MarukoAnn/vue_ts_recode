@@ -10,13 +10,14 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { onMounted } from 'vue'
-  import LoginForm from './LoginForm.vue'
-  onMounted(() => {})
+import { onMounted } from 'vue'
+import LoginForm from './LoginForm.vue'
+
+onMounted(() => {})
 </script>
 <style lang="scss" scoped>
-  .login-content {
-    background: linear-gradient(850deg, salmon, #74e5fa);
-    height: 100vh;
-  }
+.login-content {
+  background: linear-gradient(850deg, salmon, #74e5fa);
+  height: 100vh;
+}
 </style>

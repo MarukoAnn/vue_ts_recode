@@ -28,23 +28,11 @@ module.exports = {
     'import/no-absolute-path': 'off',
     'import/no-extraneous-dependencies': 'off',
     'vue/no-multiple-template-root': 'off',
-    "no-use-before-define": 'off',
-    "@typescript-eslint/no-use-before-define": ["error"],
-    'no-param-reassign': [
-      'error',
-      {
-        props: true,
-        ignorePropertyModificationsFor: [
-          'e', // for e.returnvalue
-          'ctx', // for Koa routing
-          'req', // for Express requests
-          'request', // for Express requests
-          'res', // for Express responses
-          'response', // for Express responses
-          'state' // for vuex state
-        ]
-      }
-    ]
+    'vue/multi-word-component-names': 0,
+    'no-use-before-define': 'off',
+    'class-methods-use-this': 0,
+    '@typescript-eslint/no-use-before-define': 0,
+    'no-param-reassign': 0
   },
   settings: { 'import/resolver': { typescript: { project: `${__dirname}/tsconfig.json` } } }
 }

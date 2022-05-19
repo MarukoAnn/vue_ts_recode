@@ -19,27 +19,28 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { onBeforeMount } from 'vue';
-  import { TabMenu } from '@/model/home/menu';
-  import scrollPane from '@/components/ScrollPane.vue';
-  import useStore from '@/hooks/useStoreHook';
-  import { useRouter } from 'vue-router';
-  const router = useRouter()
-  const { menuStores } = useStore()
-  onBeforeMount(() => {
-    if (menuStores.tabMenu.length === 0) {
-      menuStores.setTabMenuData({ name: '首页', path: '/home/main', isActive: true })
-    }
-  })
-  const handleClose = (tag: TabMenu): void => {
-    menuStores.removeTabMenuData(tag)
-    console.log('menuStores.tabMenu', menuStores.tabMenu)
-    let routeObj = menuStores.tabMenu.find((val) => val.isActive)
-    router.push(routeObj.path)
+import { onBeforeMount } from 'vue'
+import { TabMenu } from '@/model/home/menu'
+import scrollPane from '@/components/ScrollPane.vue'
+import useStore from '@/hooks/useStoreHook'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const { menuStores } = useStore()
+onBeforeMount(() => {
+  if (menuStores.tabMenu.length === 0) {
+    menuStores.setTabMenuData({ name: '首页', path: '/home/main', isActive: true })
   }
-  const handleClick = (tag: TabMenu): void => {
-    menuStores.resetTabMenuStatus()
-    tag.isActive = true
-    router.push(tag.path)
-  }
+})
+const handleClose = (tag: TabMenu): void => {
+  menuStores.removeTabMenuData(tag)
+  console.log('menuStores.tabMenu', menuStores.tabMenu)
+  const routeObj = menuStores.tabMenu.find((val) => val.isActive)
+  router.push(routeObj.path)
+}
+const handleClick = (tag: TabMenu): void => {
+  menuStores.resetTabMenuStatus()
+  tag.isActive = true
+  router.push(tag.path)
+}
 </script>

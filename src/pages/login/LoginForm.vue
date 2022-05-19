@@ -15,50 +15,51 @@
   </el-form>
 </template>
 <script lang="ts" setup>
-  import { reactive, getCurrentInstance, onMounted, toRefs } from 'vue'
-  import { LoginFromData } from '@/model/login/login'
-  import { login } from '@/apis/login'
-  import { IDataWithError } from '@/utils/http/axios'
-  import { useRouter } from 'vue-router'
-  import useStore from '@/hooks/useStoreHook'
-  const ruleForm = reactive<LoginFromData>({
-    password: '',
-    username: '',
-    rememberPsw: false
-  })
-  const app = getCurrentInstance()!.appContext.config.globalProperties
-  const router = useRouter()
-  const { userStore } = useStore()
-  onMounted(() => {
-    console.log('userStore.info', userStore.info)
-    if (userStore.info?.rememberPsw) {
-      ruleForm.username = userStore.info?.username
-      ruleForm.password = userStore.info?.password
-      ruleForm.rememberPsw = userStore.info?.rememberPsw
-    }
-  })
+import { reactive, getCurrentInstance, onMounted, toRefs } from 'vue'
+import { LoginFromData } from '@/model/login/login'
+import { login } from '@/apis/login'
+import { IDataWithError } from '@/utils/http/axios'
+import { useRouter } from 'vue-router'
+import useStore from '@/hooks/useStoreHook'
 
-  const btnClick = (): void => {
-    console.log(ruleForm.username, 'ruleForm')
-    if (ruleForm.username == 'admin' && ruleForm.password == '123456') {
-      login(ruleForm).then((res: IDataWithError<null>) => {
-        console.log(res)
-        if (res.code === 200) {
-		 if (res.data.token) {
-			userStore.setToken(res.data.token)
-		 }
-          app.$toast('success', '登陆成功')
-          userStore.setUserInfo(ruleForm)
-          router.push({ path: '/home/main' })
-        }
-      })
-    } else {
-      app.$toast('error', '用户名密码错误')
-    }
+const ruleForm = reactive<LoginFromData>({
+  password: '',
+  username: '',
+  rememberPsw: false
+})
+const app = getCurrentInstance()!.appContext.config.globalProperties
+const router = useRouter()
+const { userStore } = useStore()
+onMounted(() => {
+  console.log('userStore.info', userStore.info)
+  if (userStore.info?.rememberPsw) {
+    ruleForm.username = userStore.info?.username
+    ruleForm.password = userStore.info?.password
+    ruleForm.rememberPsw = userStore.info?.rememberPsw
   }
+})
+
+const btnClick = (): void => {
+  console.log(ruleForm.username, 'ruleForm')
+  if (ruleForm.username === 'admin' && ruleForm.password === '123456') {
+    login(ruleForm).then((res: IDataWithError<null>) => {
+      console.log(res)
+      if (res.code === 200) {
+        if (res.data.token) {
+          userStore.setToken(res.data.token)
+        }
+        app.$toast('success', '登陆成功')
+        userStore.setUserInfo(ruleForm)
+        router.push({ path: '/home/main' })
+      }
+    })
+  } else {
+    app.$toast('error', '用户名密码错误')
+  }
+}
 </script>
 <style scoped lang="scss">
-  :deep(.el-form-item) {
-    margin-bottom: 40px;
-  }
+:deep(.el-form-item) {
+  margin-bottom: 40px;
+}
 </style>

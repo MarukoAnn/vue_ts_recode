@@ -1,5 +1,3 @@
 <template>
-	<div>
-		表单相关
-	</div>
+  <div>表单相关</div>
 </template>

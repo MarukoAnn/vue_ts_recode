@@ -1,7 +1,7 @@
 <template>
-	<Layout />
+  <Layout />
 </template>
 
 <script setup>
-	import Layout from '@/layout/Layout.vue'
+import Layout from '@/layout/Layout.vue'
 </script>

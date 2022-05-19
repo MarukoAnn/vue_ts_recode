@@ -1,10 +1,12 @@
 import { defineStore } from 'pinia'
 import { LoginFromData } from '@/module/login/login'
+
+// eslint-disable-next-line import/prefer-default-export
 export const useUserStore = defineStore('user', {
   state: () => {
     return {
       info: {},
-	  token: ''
+      token: ''
     }
   },
   //  数据持久化
@@ -17,8 +19,8 @@ export const useUserStore = defineStore('user', {
       console.log(data)
       this.info = data
     },
-	setToken(data: string) {
-	   this.token = data
-	}
+    setToken(data: string) {
+      this.token = data
+    }
   }
 })

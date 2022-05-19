@@ -9,6 +9,7 @@ import axiosRetry from 'axios-retry'
 import authUtils from '@/utils/auth'
 import route from '@/router/index'
 import { useUserStore } from '@/store/module/user'
+
 const userStore = useUserStore()
 // // 环境的切换
 // axios.defaults.baseURL = import.meta.env.VITE_BASE_API
@@ -39,18 +40,18 @@ class HttpService {
         return !error.response || error.response.status !== 401
       }
     })
-    this.addInterceptors(this.http)
+    this.addInterceptors()
   }
 
-  private addInterceptors(http: AxiosInstance) {
+  private addInterceptors() {
     //  1、拦截请求
-    http.interceptors.request.use((config) => {
+    this.http.interceptors.request.use((config: any) => {
       // 1、添加token
-	  console.log(userStore.token)
-      const token = userStore.token
+      console.log(userStore.token)
+      const { token } = userStore
       //  获取token后做啥
       if (token) {
-		config!.headers['Authorization'] = `Bearer ${token}`
+        config!.headers.Authorization = `Bearer ${token}`
       }
       // 2、验证请求状态码
       // eslint-disable-next-line no-param-reassign
@@ -72,7 +73,7 @@ class HttpService {
       return config
     })
     // 2、相应拦截
-    http.interceptors.response.use(
+    this.http.interceptors.response.use(
       (response: AxiosResponse) => {
         return response
       },

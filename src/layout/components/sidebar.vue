@@ -18,35 +18,36 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { ref, onMounted, onBeforeMount } from 'vue'
-  //   import { menuStore } from '@/store/module/menu'
-  import useStore from '@/hooks/useStoreHook'
-  import { useRouter, useRoute } from 'vue-router'
-  import subMenuItem from './subMenuItem.vue'
-  const router = useRouter()
-  const route = useRoute()
-  const MenuData = ref([])
-  const { menuStores } = useStore()
-  onBeforeMount(() => {
-    console.log(route.name)
-    let routeList: any = router.getRoutes().find((val) => val.name == 'Home')
-    MenuData.value = routeList?.children
-  })
-  const handleClose = (key: string, keyPath: string[]) => {
-    console.log(key, keyPath)
-  }
-  const handleSelect = (item: any) => {
-    console.log(item, 'select')
-    let obj = { name: item.meta.label, path: item.path, isActive: true }
-    menuStores.setTabMenuData(obj)
-  }
+import { ref, onMounted, onBeforeMount } from 'vue'
+//   import { menuStore } from '@/store/module/menu'
+import useStore from '@/hooks/useStoreHook'
+import { useRouter, useRoute } from 'vue-router'
+import subMenuItem from './subMenuItem.vue'
+
+const router = useRouter()
+const route = useRoute()
+const MenuData = ref([])
+const { menuStores } = useStore()
+onBeforeMount(() => {
+  console.log(route.name)
+  const routeList: any = router.getRoutes().find((val) => val.name === 'Home')
+  MenuData.value = routeList?.children
+})
+const handleClose = (key: string, keyPath: string[]) => {
+  console.log(key, keyPath)
+}
+const handleSelect = (item: any) => {
+  console.log(item, 'select')
+  const obj = { name: item.meta.label, path: item.path, isActive: true }
+  menuStores.setTabMenuData(obj)
+}
 </script>
 <style lang="scss" scoped>
-  .el-menu-vertical-demo {
-    border-color: #324157;
-  }
+.el-menu-vertical-demo {
+  border-color: #324157;
+}
 
-  :deep(.is-active) {
-    // background: #fff
-  }
+:deep(.is-active) {
+  // background: #fff
+}
 </style>

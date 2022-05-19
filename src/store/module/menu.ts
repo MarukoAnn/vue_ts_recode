@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia'
 import { TabMenu } from '@/model/home/menu'
+
+// eslint-disable-next-line import/prefer-default-export
 export const menuStore = defineStore('menu', {
   state: () => {
     return {
@@ -18,23 +20,23 @@ export const menuStore = defineStore('menu', {
     },
     setTabMenuData(state: TabMenu) {
       this.resetTabMenuStatus()
-      let flag = this.tabMenu.some((val) => val.name === state.name)
+      const flag = this.tabMenu.some((value) => value.name === state.name)
       if (!flag) {
         this.tabMenu.push(state)
       } else {
-        this.tabMenu.forEach((val: { isActive: boolean }) => {
-          if (val.name === state.name) {
-            val.isActive = true
+        this.tabMenu.forEach((value: { isActive: boolean }) => {
+          if (value.name === state.name) {
+            value.isActive = true
           }
         })
       }
     },
     removeTabMenuData(state: TabMenu) {
-      let index = this.tabMenu.reduce((acc, curr, index) => {
+      const index = this.tabMenu.reduce((account, curr, flag) => {
         if (curr.name === state.name) {
-          acc = index
+          account = flag
         }
-        return acc
+        return account
       }, 0)
       if (this.tabMenu[index].isActive && this.tabMenu.length > 1) {
         if (index - 1 >= 0) {
@@ -44,11 +46,11 @@ export const menuStore = defineStore('menu', {
         }
       }
       this.tabMenu.splice(index, 1)
-      if (this.tabMenu.length == 0) {
+      if (this.tabMenu.length === 0) {
         this.tabMenu.push({ name: '首页', path: '/home/main', isActive: true })
       }
     },
-    resetTabMenuStatus(state: TabMenu) {
+    resetTabMenuStatus() {
       this.tabMenu.forEach((val: { isActive: boolean }) => {
         val.isActive = false
       })

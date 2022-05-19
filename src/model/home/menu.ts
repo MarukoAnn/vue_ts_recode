@@ -11,9 +11,9 @@ export interface MetaData {
 }
 
 export interface TabMenu {
-	name: string,
-	path: string,
-	isActive: boolean
+  name: string
+  path: string
+  isActive: boolean
 }
 
 // export interface TabViewData {
