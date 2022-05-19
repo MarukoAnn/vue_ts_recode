@@ -4,79 +4,47 @@ module.exports = {
     es2021: true,
     node: true
   },
-  parser: 'vue-eslint-parser',
-  parserOptions: {
-    parser: '@typescript-eslint/parser',
-    ecmaVersion: 2020,
-    sourceType: 'module',
-    jsxPragma: 'React',
-    ecmaFeatures: {
-      jsx: true,
-    },
-  },
-  // 配置vue3 'plugin:vue/vue3-essential
-  // 配置vue2 'plugin:vue/essential'
   extends: [
-	'plugin:vue/vue3-recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended'
+    'plugin:vue/vue3-essential',
+    'airbnb-base',
+    'plugin:jest/recommended',
+    'plugin:prettier/recommended' // 添加 prettier 插件
   ],
-
-  plugins: [
-    'vue',
-    '@typescript-eslint'
-    // 添加prettier 插件
-  ],
+  parserOptions: {
+    ecmaVersion: 13,
+    parser: '@typescript-eslint/parser',
+    sourceType: 'module'
+  },
+  plugins: ['vue', '@typescript-eslint'],
   rules: {
-    // 'vue/script-setup-uses-vars': 'error',
-    '@typescript-eslint/ban-ts-ignore': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/no-var-requires': 'off',
-    '@typescript-eslint/no-empty-function': 'off',
-    'vue/custom-event-name-casing': 'off',
-    'no-use-before-define': 'off',
-    '@typescript-eslint/no-use-before-define': 'off',
-    '@typescript-eslint/ban-ts-comment': 'off',
-    '@typescript-eslint/ban-types': 'off',
-    '@typescript-eslint/no-non-null-assertion': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/no-unused-vars': [
+    'generator-star-spacing': 'off',
+    'no-debugger': 'off',
+    'no-tabs': 'off',
+    'no-unused-vars': 'off',
+    'no-console': 'off',
+    'no-irregular-whitespace': 'off',
+    'import/no-unresolved': 'off',
+    'import/extensions': 'off',
+    'import/no-absolute-path': 'off',
+    'import/no-extraneous-dependencies': 'off',
+    'vue/no-multiple-template-root': 'off',
+    "no-use-before-define": 'off',
+    "@typescript-eslint/no-use-before-define": ["error"],
+    'no-param-reassign': [
       'error',
       {
-        argsIgnorePattern: '^_',
-        varsIgnorePattern: '^_',
-      },
-    ],
-    'no-unused-vars': [
-      'error',
-      {
-        argsIgnorePattern: '^_',
-        varsIgnorePattern: '^_',
-      },
-    ],
-    'space-before-function-paren': 'off',
-    'vue/attributes-order': 'off',
-    'vue/one-component-per-file': 'off',
-    'vue/html-closing-bracket-newline': 'off',
-    'vue/max-attributes-per-line': 'off',
-    'vue/multiline-html-element-content-newline': 'off',
-    'vue/singleline-html-element-content-newline': 'off',
-    'vue/attribute-hyphenation': 'off',
-    'vue/require-default-prop': 'off',
-    'vue/require-explicit-emits': 'off',
-    'vue/html-self-closing': [
-      'error',
-      {
-        html: {
-          void: 'always',
-          normal: 'never',
-          component: 'always',
-        },
-        svg: 'always',
-        math: 'always',
-      },
-    ],
-    'vue/multi-word-component-names': 'off',
-  }
+        props: true,
+        ignorePropertyModificationsFor: [
+          'e', // for e.returnvalue
+          'ctx', // for Koa routing
+          'req', // for Express requests
+          'request', // for Express requests
+          'res', // for Express responses
+          'response', // for Express responses
+          'state' // for vuex state
+        ]
+      }
+    ]
+  },
+  settings: { 'import/resolver': { typescript: { project: `${__dirname}/tsconfig.json` } } }
 }

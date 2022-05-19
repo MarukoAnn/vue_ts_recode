@@ -6,13 +6,13 @@
     "dev": "vite --mode development",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint": "eslint ./ --ext .js,.ts",
+    "lint:fix": "eslint --fix ./src --ext .vue,.js,.ts",
+    "test": "jest"
   },
   "lint-staged": {
-    "src/*.{vue,js,ts}": [
-      "prettier -config prettier.config.js --write",
-      "eslint --fix"
-    ]
+    "*.{vue,js,ts}": "eslint --fix"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^1.1.4",
@@ -31,28 +31,34 @@
     "vue-router": "^4.0.14"
   },
   "devDependencies": {
-    "@commitlint/cli": "^16.2.3",
-    "@commitlint/config-conventional": "^16.2.1",
+    "@commitlint/cli": "^16.3.0",
+    "@commitlint/config-conventional": "^16.2.4",
+    "@types/jest": "^27.5.1",
     "@types/node": "^17.0.34",
-    "@typescript-eslint/eslint-plugin": "^5.20.0",
-    "@typescript-eslint/parser": "^5.20.0",
+    "@typescript-eslint/eslint-plugin": "^5.25.0",
+    "@typescript-eslint/parser": "^5.25.0",
     "@vitejs/plugin-vue": "^2.3.1",
+    "@vue/test-utils": "^2.0.0-rc.18",
     "cross-env": "^7.0.3",
-    "eslint": "^8.13.0",
+    "eslint": "^8.15.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-import-resolver-typescript": "^2.7.1",
     "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^26.2.2",
     "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-vue": "^8.6.0",
+    "eslint-plugin-vue": "^9.0.1",
     "husky": "^7.0.0",
+    "jest": "^26.6.3",
     "lint-staged": "^12.4.0",
     "prettier": "^2.6.2",
+    "ts-jest": "^26.5.6",
     "typescript": "^4.3.5",
     "vite": "^2.9.5",
     "vite-plugin-mock": "^2.9.6",
     "vite-plugin-windicss": "^1.8.4",
+    "vue-jest": "^5.0.0-alpha.10",
     "vue-tsc": "^0.34.7",
     "windicss": "^3.5.1"
   },

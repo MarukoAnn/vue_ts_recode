@@ -14,7 +14,7 @@
     </div>
     <div class="mr-4 flex items-center">
       <el-icon class="mr-4" @click="ampClick">
-        <component is="font-awesome-icon" :icon="fullScreen ? 'compress-alt' : 'expand-alt'" />
+        <component :is="font-awesome-icon" :icon="fullScreen ? 'compress-alt' : 'expand-alt'" />
       </el-icon>
       <el-popover trigger="click" title="" persistent>
         <template #reference>
@@ -28,28 +28,15 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { onMounted, ref } from 'vue'
+  import { onMounted, ref } from 'vue';
   import useStore from '@/hooks/useStoreHook'
   import { useRouter } from 'vue-router'
-  import { tabMenu } from '@/model/home/menu'
+  import { TabMenu } from '@/model/home/menu'
   const { menuStores } = useStore()
   const router = useRouter()
   const routerList = ref<any>([])
   const breadData = ref<string[]>([])
   const fullScreen = ref<boolean>(false)
-  onMounted(() => {
-    routerList.value = router.getRoutes().find((val) => val.name == 'Home')
-    setBreadData(menuStores.tabMenu)
-  })
-  const menuSub = menuStores.$subscribe((mutation: any, state: any) => {
-    breadData.value = []
-    setBreadData(state.tabMenu)
-  })
-  const setBreadData = (menuArr: tabMenu): void => {
-    let routeArr = menuArr.find((res: any) => res.isActive).path.split('/')
-    let routeFilter = routeArr.filter((val: string) => val !== '' && val !== 'home')
-    deepForRouteLabel(routerList.value.children, 0, routeFilter)
-  }
   // 递归循环
   const deepForRouteLabel = (routerList: any, index: number, arr: string[]) => {
     routerList.forEach((val: any) => {
@@ -57,15 +44,28 @@
         return
       }
       let list = val.path.split('/')
-      if (list[list.length - 1] == arr[index]) {
+      if (list[list.length - 1] === arr[index]) {
         breadData.value.push(val?.meta?.label)
         if (val.children?.length > 0) {
-          index++
+          ++index
           deepForRouteLabel(val.children, index, arr)
         }
       }
     })
   }
+  const setBreadData = (menuArr: tabMenu): void => {
+    let routeArr = menuArr.find((res: any) => res.isActive).path.split('/')
+    let routeFilter = routeArr.filter((val: string) => val !== '' && val !== 'home')
+    deepForRouteLabel(routerList.value.children, 0, routeFilter)
+  }
+  onMounted(() => {
+    routerList.value = router.getRoutes().find((val) => val.name === 'Home')
+    setBreadData(menuStores.tabMenu)
+  })
+  const menuSub = menuStores.$subscribe((mutation: any, state: any) => {
+    breadData.value = []
+    setBreadData(state.tabMenu)
+  })
   const iconClick = (): void => {
     menuStores.setMenuClosed(!menuStores.isMenuClosed)
   }
