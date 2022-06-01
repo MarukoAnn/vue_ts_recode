@@ -9,15 +9,18 @@ import axiosRetry from 'axios-retry'
 import authUtils from '@/utils/auth'
 import route from '@/router/index'
 import { useUserStore } from '@/store/module/user'
+import { setToken, getToken } from '@/utils/tokenKey'
 
 const userStore = useUserStore()
 // // 环境的切换
 // axios.defaults.baseURL = import.meta.env.VITE_BASE_API
+// axios.defaults.withCredentials = true
 export interface IDataWithError<T> {
   data: T
   code: number
   msg: string
 }
+
 class HttpService {
   private http!: AxiosInstance
 
@@ -26,6 +29,7 @@ class HttpService {
       baseURL: authUtils.getBaseUrl(),
       timeout: 600000
     })
+    setToken(userStore.token) // 设置cookie
     axiosRetry(this.http, {
       retries: 3, // 失败重试的次数
       shouldResetTimeout: true, // 定义是否在重试之间重置超时
@@ -50,9 +54,16 @@ class HttpService {
       console.log(userStore.token)
       const { token } = userStore
       //  获取token后做啥
-      if (token) {
-        config!.headers.Authorization = `Bearer ${token}`
+      // if (token) {
+
+      // }
+      config.headers = {
+        'Content-Type': 'application/json;charset=UTF-8', // 传参方式json
+        // CookieJson: token || '', // 这里自定义配置，这里传的是token
+        Authorization: `Bearer ${token}`
       }
+      setToken(token)
+      console.log('getToken:', getToken())
       // 2、验证请求状态码
       // eslint-disable-next-line no-param-reassign
       config.validateStatus = (status: number) => {
