@@ -8,6 +8,7 @@ specifiers:
   '@fortawesome/free-solid-svg-icons': ^6.1.1
   '@fortawesome/vue-fontawesome': ^3.0.0-5
   '@types/jest': ^27.5.1
+  '@types/js-cookie': ^3.0.2
   '@types/node': ^17.0.34
   '@typescript-eslint/eslint-plugin': ^5.25.0
   '@typescript-eslint/parser': ^5.25.0
@@ -28,6 +29,7 @@ specifiers:
   eslint-plugin-vue: ^9.0.1
   husky: ^7.0.0
   jest: ^26.6.3
+  js-cookie: ^3.0.1
   lint-staged: ^12.4.0
   mockjs: ^1.1.0
   pinia: ^2.0.13
@@ -44,7 +46,7 @@ specifiers:
   vue-jest: ^5.0.0-alpha.10
   vue-router: ^4.0.14
   vue-tsc: ^0.34.7
-  windicss: ^3.5.1
+  windicss: ^3.5.4
 
 dependencies:
   '@element-plus/icons-vue': registry.npmmirror.com/@element-plus/icons-vue/1.1.4_vue@3.2.33
@@ -54,6 +56,7 @@ dependencies:
   axios: registry.npmmirror.com/axios/0.26.1
   axios-retry: registry.npmmirror.com/axios-retry/3.2.4
   element-plus: registry.npmmirror.com/element-plus/2.1.11_vue@3.2.33
+  js-cookie: registry.npmmirror.com/js-cookie/3.0.1
   mockjs: registry.npmmirror.com/mockjs/1.1.0
   pinia: registry.npmmirror.com/pinia/2.0.13_typescript@4.6.3+vue@3.2.33
   pinia-plugin-persist: registry.npmmirror.com/pinia-plugin-persist/1.0.0_pinia@2.0.13+vue@3.2.33
@@ -66,6 +69,7 @@ devDependencies:
   '@commitlint/cli': registry.npmmirror.com/@commitlint/cli/16.3.0
   '@commitlint/config-conventional': registry.npmmirror.com/@commitlint/config-conventional/16.2.4
   '@types/jest': registry.npmmirror.com/@types/jest/27.5.1
+  '@types/js-cookie': registry.npmmirror.com/@types/js-cookie/3.0.2
   '@types/node': registry.npmmirror.com/@types/node/17.0.34
   '@typescript-eslint/eslint-plugin': registry.npmmirror.com/@typescript-eslint/eslint-plugin/5.25.0_4237415c61902cb693e9f318ae129e0e
   '@typescript-eslint/parser': registry.npmmirror.com/@typescript-eslint/parser/5.25.0_eslint@8.15.0+typescript@4.6.3
@@ -92,7 +96,7 @@ devDependencies:
   vite-plugin-windicss: registry.npmmirror.com/vite-plugin-windicss/1.8.4_vite@2.9.5
   vue-jest: registry.npmmirror.com/vue-jest/5.0.0-alpha.10_d2e64f91ec4b13e82f09e2952406707b
   vue-tsc: registry.npmmirror.com/vue-tsc/0.34.8_typescript@4.6.3
-  windicss: registry.npmmirror.com/windicss/3.5.1
+  windicss: registry.npmmirror.com/windicss/3.5.4
 
 packages:
 
@@ -1388,6 +1392,12 @@ packages:
       pretty-format: registry.npmmirror.com/pretty-format/27.5.1
     dev: true
 
+  registry.npmmirror.com/@types/js-cookie/3.0.2:
+    resolution: {integrity: sha512-6+0ekgfusHftJNYpihfkMu8BWdeHs9EOJuGcSofErjstGPfPGEu9yTu4t460lTzzAMl2cM5zngQJqPMHbbnvYA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/js-cookie/-/js-cookie-3.0.2.tgz}
+    name: '@types/js-cookie'
+    version: 3.0.2
+    dev: true
+
   registry.npmmirror.com/@types/json-schema/7.0.11:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/json-schema/-/json-schema-7.0.11.tgz}
     name: '@types/json-schema'
@@ -1920,7 +1930,7 @@ packages:
     dependencies:
       debug: registry.npmmirror.com/debug/4.3.4
       jiti: registry.npmmirror.com/jiti/1.13.0
-      windicss: registry.npmmirror.com/windicss/3.5.1
+      windicss: registry.npmmirror.com/windicss/3.5.4
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -1936,7 +1946,7 @@ packages:
       fast-glob: registry.npmmirror.com/fast-glob/3.2.11
       magic-string: registry.npmmirror.com/magic-string/0.26.1
       micromatch: registry.npmmirror.com/micromatch/4.0.5
-      windicss: registry.npmmirror.com/windicss/3.5.1
+      windicss: registry.npmmirror.com/windicss/3.5.4
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -5691,6 +5701,13 @@ packages:
     hasBin: true
     dev: true
 
+  registry.npmmirror.com/js-cookie/3.0.1:
+    resolution: {integrity: sha512-+0rgsUXZu4ncpPxRL+lNEptWMOWl9etvPHc/koSRp6MPwpRYAhmk0dUG00J4bxVV3r9uUzfo24wW0knS07SKSw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/js-cookie/-/js-cookie-3.0.1.tgz}
+    name: js-cookie
+    version: 3.0.1
+    engines: {node: '>=12'}
+    dev: false
+
   registry.npmmirror.com/js-tokens/4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/js-tokens/-/js-tokens-4.0.0.tgz}
     name: js-tokens
@@ -8194,7 +8211,7 @@ packages:
       debug: registry.npmmirror.com/debug/4.3.4
       kolorist: registry.npmmirror.com/kolorist/1.5.1
       vite: registry.npmmirror.com/vite/2.9.5_sass@1.50.1
-      windicss: registry.npmmirror.com/windicss/3.5.1
+      windicss: registry.npmmirror.com/windicss/3.5.4
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -8436,10 +8453,10 @@ packages:
       isexe: registry.npmmirror.com/isexe/2.0.0
     dev: true
 
-  registry.npmmirror.com/windicss/3.5.1:
-    resolution: {integrity: sha512-E1hYZATcZFci/XhGS0sJAMRxULjnK+glNukE78Ku7xeb3jxgMY55fFOdIrav+GjQCsgR+IZxPq9/DwmO6eyc4Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/windicss/-/windicss-3.5.1.tgz}
+  registry.npmmirror.com/windicss/3.5.4:
+    resolution: {integrity: sha512-x2Iu0a69dtNiKHMkR886lx0WKbZI5GqvXyvGBCJ2VA6rcjKYjnzCA/Ljd6hNQBfqlkSum8J+qAVcCfLzQFI4rQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/windicss/-/windicss-3.5.4.tgz}
     name: windicss
-    version: 3.5.1
+    version: 3.5.4
     engines: {node: '>= 12'}
     hasBin: true
     dev: true

@@ -14,7 +14,6 @@ import { setToken, getToken } from '@/utils/tokenKey'
 const userStore = useUserStore()
 // // 环境的切换
 // axios.defaults.baseURL = import.meta.env.VITE_BASE_API
-axios.defaults.withCredentials = true
 export interface IDataWithError<T> {
   data: T
   code: number
