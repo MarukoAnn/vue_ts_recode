@@ -8,7 +8,8 @@ module.exports = {
     'plugin:vue/vue3-essential',
     'airbnb-base',
     'plugin:jest/recommended',
-    'plugin:prettier/recommended' // 添加 prettier 插件
+    'plugin:prettier/recommended', // 添加 prettier 插件
+    './.eslintrc-auto-import.json'
   ],
   parserOptions: {
     ecmaVersion: 13,

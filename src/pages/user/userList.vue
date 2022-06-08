@@ -99,11 +99,9 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, computed, onMounted } from 'vue'
 import { userInfoData } from '@/model/user/userInfo'
 import { Plus, Edit } from '@element-plus/icons-vue'
 import type { UploadFile, UploadProps } from 'element-plus'
-import { ElMessage } from 'element-plus'
 
 const search = ref('')
 const tableData = reactive<userInfoData[]>([
