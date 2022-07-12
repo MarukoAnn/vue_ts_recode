@@ -44,13 +44,13 @@ class HttpService {
 
   private addInterceptors(http: AxiosInstance) {
     //  1、拦截请求
-    http.interceptors.request.use((config) => {
+    http.interceptors.request.use((config: any) => {
       // 1、添加token
-	  console.log(userStore.token)
+      console.log(userStore.token)
       const token = userStore.token
       //  获取token后做啥
       if (token) {
-		config!.headers['Authorization'] = `Bearer ${token}`
+        config.headers['Authorization'] = `Bearer ${token}`
       }
       // 2、验证请求状态码
       // eslint-disable-next-line no-param-reassign

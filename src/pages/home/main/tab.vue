@@ -1,3 +1,3 @@
 <template>
-	<div>tab选项卡</div>
+  <div>tab选项卡</div>
 </template>
